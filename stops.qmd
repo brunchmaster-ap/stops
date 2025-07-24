@@ -13,7 +13,7 @@ library(tidymodels)
 library(broom)
 ```
 
-Arrests during traffic stops are an important measure of law enforcement outcomes and can be influenced by various demographic factors. This analysis uses data from nearly 400,000 traffic stops conducted by the New Orleans Police Department between 2011 and 2018 to explore how race relates to the likelihood of arrest. So far, I have been working with traffic stop data from New Orleans, which includes information on arrests, driver demographics, and stop locations. My goal is to understand how race and other factors relate to the likelihood of arrest. However, a key problem is that missing data, especially for stops that resulted in arrest, may bias the results and limit the validity of my conclusions.
+Arrests during traffic stops are an important measure of law enforcement outcomes and can be influenced by various demographic factors. This analysis uses data from nearly 400,000 traffic stops conducted by the New Orleans Police Department between 2011 and 2018 to explore how race relates to the likelihood of arrest. So far, I have been working with traffic stop data from New Orleans, which includes information on arrests, driver demographics, and stop locations. My goal is to understand how race and other factors relate to the likelihood of arrest. However, a key problem is that missing data, especially for stops that resulted in arrest, may bias the results and limit the validity of my conclusions. I model the probability of arrest, a binary outcome indicating whether an arrest was made or not, as a logistic function of race, sex, age, and zone.
 
 ```{r}
 #| label: eda
@@ -55,4 +55,25 @@ and
 
 ```{r}
 #| cache: true
+```
+
+```{r}
+#| echo: false
+fit <- lm(arrested ~ race + sex + age + zone, data = stops)
+
+tidy_results <- tidy(fit, conf.int = TRUE)
+
+library(gt)
+
+tidy_results %>%
+  select(term, estimate, conf.low, conf.high) %>%
+  gt() %>%
+  tab_header(title = "Model Coefficients with Confidence Intervals") %>%
+  fmt_number(columns = c("estimate", "conf.low", "conf.high"), decimals = 2) %>%
+  cols_label(
+    term = "Variable",
+    estimate = "Estimate",
+    conf.low = "Lower 95% CI",
+    conf.high = "Upper 95% CI"
+  )
 ```

@@ -6,12 +6,14 @@ author: Ansh Patel
 
 ```{r}
 #| message: false
+#| echo: false
 library(tidyverse)
 library(primer.data)
+library(tidymodels)
+library(broom)
 ```
 
 Arrests during traffic stops are an important measure of law enforcement outcomes and can be influenced by various demographic factors. This analysis uses data from nearly 400,000 traffic stops conducted by the New Orleans Police Department between 2011 and 2018 to explore how race relates to the likelihood of arrest. So far, I have been working with traffic stop data from New Orleans, which includes information on arrests, driver demographics, and stop locations. My goal is to understand how race and other factors relate to the likelihood of arrest. However, a key problem is that missing data, especially for stops that resulted in arrest, may bias the results and limit the validity of my conclusions.
-
 
 ```{r}
 #| label: eda
@@ -19,4 +21,38 @@ x <- stops |>
   filter(race %in% c("black", "white")) |>
   mutate(race = str_to_title(race), 
          sex = str_to_title(sex))
+```
+
+\[
+P(Y = 1) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_n X_n)}}
+\]
+
+where
+
+\[
+Y \sim \text{Bernoulli}(\rho)
+\]
+
+and
+
+\[
+\rho = P(Y=1)
+\]
+
+\[
+\hat{Y} = \beta_0 
++ \beta_1 \, \text{sim}_1 + \beta_2 \, \text{sim}_2 + \beta_3 \, \text{sim}_3 + \beta_4 \, \text{sim}_4 + \beta_5 \, \text{sim}_5 
+\]
+\[
++ \beta_6 \, \text{sim}_6 + \beta_7 \, \text{sim}_7 + \beta_8 \, \text{sim}_8 + \beta_9 \, \text{sim}_9 + \beta_{10} \, \text{sim}_{10}
+\]
+\[
++ \cdots
+\]
+\[
++ \beta_{46} \, \text{sim}_{46} + \beta_{47} \, \text{sim}_{47} + \beta_{48} \, \text{sim}_{48} + \beta_{49} \, \text{sim}_{49} + \beta_{50} \, \text{sim}_{50}
+\]
+
+```{r}
+#| cache: true
 ```

@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stops",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "stops.html",
+    "href": "stops.html",
+    "title": "Stops",
+    "section": "",
+    "text": "Arrests during traffic stops are an important measure of law enforcement outcomes and can be influenced by various demographic factors. This analysis uses data from nearly 400,000 traffic stops conducted by the New Orleans Police Department between 2011 and 2018 to explore how race relates to the likelihood of arrest. So far, I have been working with traffic stop data from New Orleans, which includes information on arrests, driver demographics, and stop locations. My goal is to understand how race and other factors relate to the likelihood of arrest. However, a key problem is that missing data, especially for stops that resulted in arrest, may bias the results and limit the validity of my conclusions. I model the probability of arrest, a binary outcome indicating whether an arrest was made or not, as a logistic function of race, sex, age, and zone.\n\nx &lt;- stops |&gt;\n  filter(race %in% c(\"black\", \"white\")) |&gt;\n  mutate(race = str_to_title(race), \n         sex = str_to_title(sex))\n\n[ P(Y = 1) = ]\nwhere\n[ Y () ]\nand\n[ = P(Y=1) ]\n[ = _0 + _1 , _1 + _2 , _2 + _3 , _3 + 4 , 4 + 5 , 5 ] [ + 6 , 6 + 7 , 7 + 8 , 8 + 9 , 9 + {10} , {10} ] [ + ] [ + {46} , {46} + {47} , {47} + {48} , {48} + {49} , {49} + {50} , {50} ]\n\n\n\n\n\n\n\n\nModel Coefficients with Confidence Intervals\n\n\nVariable\nEstimate\nLower 95% CI\nUpper 95% CI\n\n\n\n\n(Intercept)\n0.11\n0.10\n0.13\n\n\nraceblack\n0.15\n0.13\n0.16\n\n\nracehispanic\n0.08\n0.07\n0.10\n\n\nraceother\n0.03\n−0.02\n0.08\n\n\nraceunknown\n−0.02\n−0.04\n0.00\n\n\nracewhite\n0.11\n0.09\n0.12\n\n\nsexmale\n0.07\n0.06\n0.07\n\n\nage\n0.00\n0.00\n0.00\n\n\nzoneB\n0.01\n0.00\n0.02\n\n\nzoneC\n0.01\n0.00\n0.01\n\n\nzoneD\n0.09\n0.08\n0.09\n\n\nzoneE\n0.00\n0.00\n0.01\n\n\nzoneF\n−0.01\n−0.02\n0.00\n\n\nzoneG\n0.03\n0.03\n0.04\n\n\nzoneH\n0.08\n0.07\n0.09\n\n\nzoneI\n0.02\n0.01\n0.03\n\n\nzoneJ\n0.02\n0.01\n0.03\n\n\nzoneK\n0.05\n0.04\n0.06\n\n\nzoneL\n0.00\n−0.01\n0.01\n\n\nzoneM\n0.03\n0.02\n0.04\n\n\nzoneN\n−0.01\n−0.02\n0.00\n\n\nzoneO\n0.01\n0.00\n0.02\n\n\nzoneP\n0.01\n0.00\n0.02\n\n\nzoneQ\n0.00\n−0.01\n0.01\n\n\nzoneR\n0.00\n−0.01\n0.01\n\n\nzoneS\n0.05\n0.04\n0.06\n\n\nzoneT\n0.00\n−0.01\n0.01\n\n\nzoneU\n0.01\n0.00\n0.02\n\n\nzoneV\n0.06\n0.05\n0.08\n\n\nzoneW\n0.10\n0.07\n0.13\n\n\nzoneX\n0.02\n0.00\n0.03\n\n\nzoneY\n0.03\n0.02\n0.05"
+  }
+]
